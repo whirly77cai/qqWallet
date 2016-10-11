@@ -1,0 +1,275 @@
+/*reset*/
+html,body,article,section,ul,li,div,a{
+	margin: 0;
+	padding: 0;
+}
+
+li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+/*common*/
+body{
+	background: #000;
+}
+
+article.layout{
+	width: 750px;
+	margin: 0 auto;
+}
+
+div.page{
+	height: 1076px;
+	padding-top: 60px;
+	background: url(../imgs/bg_qqWallet.png);
+	position: relative;
+	overflow: hidden;
+}
+
+.logo_1{
+	height: 38px;
+	text-align: center;
+}
+
+.logo_2{
+	height: 350px;
+	margin: 28px 0 0;
+	text-align: center;
+}
+
+.arrow{
+	width: 60px;
+	height: 60px;
+	margin-left: -30px;
+	background: url(../imgs/arrow.png);
+	position: absolute;
+	left: 50%;
+	bottom: 23%;
+}
+.clearfix:after{
+	content: ".";
+	display: block;
+	height: 0;
+	visibility:hidden;
+	clear: both;
+}
+.clearMe{
+	clear: left;
+}
+.bold{
+	font-weight: bold;
+}
+.triangle_1, .triangle_2, .triangle_3, .triangle_4{
+	position: absolute;
+	background: url(../imgs/triangle.png);
+}
+.triangle_1{
+	top: 20%;
+	left: 2%;
+	width: 56px;
+	height: 64px;
+	background-position: 0 0;
+}
+.triangle_2{
+	top: 10%;
+	right: 1%;
+	width: 87px;
+	height: 82px;
+	background-position: 0 82px;
+}
+.triangle_3{
+	bottom: 9%;
+	left: -2%;
+	width: 87px;
+	height: 90px;
+	background-position: 0 164px;
+}
+.triangle_4{
+	bottom: 20%;
+	right: -5%;
+	width: 87px;
+	height: 90px;
+	background-position: 0 164px;
+}
+
+
+
+
+
+/*page-1*/
+ul.timeLine {
+	margin-top: 50px;
+	position: absolute;
+	left: 50%;
+}
+
+ul.timeLine li.item{
+	color: #b99c63;
+	font-size: 24px;
+	line-height: 1;
+	height: 100px;
+	border-left: 1px solid #71643d;
+
+}
+
+ul.timeLine li.item:last-child{
+	border-left: none;
+}
+
+ul.timeLine li.item:nth-child(even) ul{
+	text-align: right;
+	position: relative;
+	left: -260px;
+}
+
+ul.timeLine li div{
+	float: left;
+}
+
+ul.timeLine li div.timeLinePoint{
+	width: 25px;
+	height: 25px;
+	margin-left: -12.5px;
+	background: url(../imgs/timePoint.png);
+}
+
+ul.timeLine li ul.timeEvent{
+	margin-left: 30px;
+	position: relative;
+	left:0;
+}
+
+
+ul.timeLine li ul.timeEvent li{
+	margin-bottom: 10px;
+}
+
+
+ul.timeLine li ul.timeEvent li:nth-child(3){
+	font-size: 20px;
+	color: #96896e;
+}
+
+
+/*page-2*/
+#page_2 div.logo_2{
+	height: 230px;
+}
+
+ul#prize{
+	width: 562px;
+	height: 530px;
+	margin:90px auto 0;
+}
+
+ul#prize li{
+	float: left;
+	margin: 0 0 20px 45px;
+	transform: scale(0);
+}
+
+ul#prize li:nth-child(3n+1){
+	margin-left: 0px;
+}
+
+
+/*page-3*/
+#iPhone_info, a.btn, p.tip{
+	color: #b99c63;
+}
+
+#iPhone, #iPhone_info{
+	float: left;
+	height: 288px;
+	margin-top: -50px;
+	position: relative;
+}
+
+#iPhone{
+	margin: -50px 120px 0 150px;
+	left: -344px;
+}
+
+#iPhone_info{
+	font-size: 27px;
+	padding-top: 84px;
+	left: 334px;
+}
+
+#iPhone_info span{
+	color: yellow;
+}
+
+
+
+div.btnGroup{
+	width: 750px;
+	text-align: center;
+	position: relative;
+	bottom: -100%;
+}
+.btn{
+	display: inline-block;
+	width: 240px;
+	height: 80px;
+	font-size: 30px;
+	line-height: 80px;
+	border: 1px solid #f6cb6f;
+}
+#share{
+	margin-left: 40px;
+}
+
+.tip{
+	font-size: 24px;
+	margin-top: 40px;
+	padding-left: 10px;
+	width: 750px;
+	text-align: center;
+}
+
+.mask{
+	width: 750px;
+	height: 1136px;
+	background: url(../imgs/mask.png);
+	position: absolute;
+	top: -100%;
+}
+
+
+/*动画相关*/
+/*箭头浮动效果*/
+/*left: 50%;*/
+@keyframes arrowUpToDown{
+	0%{bottom: 23%;}
+	50%{bottom: 30%;}
+	100%{bottom: 23%;}
+}
+@-webkit-keyframes arrowUpToDown{
+	0%{bottom: 23%;}
+	50%{bottom: 30%;}
+	100%{bottom: 23%;}
+}
+.arrow{
+	animation: arrowUpToDown 2.3s infinite;
+}
+
+@keyframes fadeIn{
+	from{opacity: 0;}
+	to{opacity: 1; visibility: visible;}
+}
+
+@keyframes fadeOut{
+	from{opacity: 1;}
+	to{opacity: 0;}
+}
+
+@keyframes slideUp{
+	from{bottom: -100%}
+	to{bottom: 0}
+}
