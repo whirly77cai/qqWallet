@@ -1,4 +1,4 @@
-/*reset*/
+reset*/
 html,body,article,section,ul,li,div,a{
 	margin: 0;
 	padding: 0;
@@ -98,7 +98,12 @@ div.page{
 }
 
 
-
+div.timeLineWarp{
+	width: 750px;
+	height: 900px;
+	position: relative;
+	overflow: hidden;
+}
 
 
 /*page-1*/
@@ -144,6 +149,13 @@ ul.timeLine li ul.timeEvent{
 	left:0;
 }
 
+
+/*ul.timeLine li:nth-child(odd) ul.timeEvent{
+	left: 344px;
+}
+ul.timeLine li:nth-child(even) ul.timeEvent{
+	left: -610px;
+}*/
 
 ul.timeLine li ul.timeEvent li{
 	margin-bottom: 10px;
@@ -192,13 +204,13 @@ ul#prize li:nth-child(3n+1){
 
 #iPhone{
 	margin: -50px 120px 0 150px;
-	left: -344px;
+	left: -280px;
 }
 
 #iPhone_info{
 	font-size: 27px;
 	padding-top: 84px;
-	left: 334px;
+	left: 350px;
 }
 
 #iPhone_info span{
@@ -239,6 +251,7 @@ div.btnGroup{
 	background: url(../imgs/mask.png);
 	position: absolute;
 	top: -100%;
+	z-index: -1;
 }
 
 
@@ -255,11 +268,14 @@ div.btnGroup{
 	50%{bottom: 30%;}
 	100%{bottom: 23%;}
 }
-.arrow{
-	animation: arrowUpToDown 2.3s infinite;
-}
+
 
 @keyframes fadeIn{
+	from{opacity: 0;}
+	to{opacity: 1; visibility: visible;}
+}
+
+@-webkit-keyframes fadeIn{
 	from{opacity: 0;}
 	to{opacity: 1; visibility: visible;}
 }
@@ -269,7 +285,129 @@ div.btnGroup{
 	to{opacity: 0;}
 }
 
+@-webkit-keyframes fadeOut{
+	from{opacity: 0;}
+	to{opacity: 1; visibility: visible;}
+}
+
+@keyframes slideRightToLeft-1{
+	from{left: 344px;}
+	to{left: 0}
+}
+
+@-webkit-keyframes slideRightToLeft-1{
+	from{left: 344px;}
+	to{left: 0}
+}
+
+
+@keyframes slideLeftToRight-1{
+	from{left: -610px;}
+	to{left: -260px;}
+}
+
+@-webkit-keyframes slideLeftToRight-1{
+	from{left: -610px;}
+	to{left: -260px;}
+}
+
+@keyframes slideRightToLeft-2{
+	from{left: 350px;}
+	to{left: 0}
+}
+
+@-webkit-keyframes slideRightToLeft-2{
+	from{left: 350px;}
+	to{left: 0}
+}
+
+
+@keyframes slideLeftToRight-2{
+	from{left: -280px;}
+	to{left: 0;}
+}
+
+@-webkit-keyframes slideLeftToRight-2{
+	from{left: -280px;}
+	to{left: 0;}
+}
+
+
 @keyframes slideUp{
 	from{bottom: -100%}
 	to{bottom: 0}
+}
+
+@-webkit-keyframes slideUp{
+	from{bottom: -100%}
+	to{bottom: 0}
+}
+
+@keyframes scaleBig{
+	0%{transform: scale(0);}
+/*	80%{transform: scale(1); }
+	90%{transform: scale(0.9);}
+*/	100%{transform: scale(1);}
+}
+
+@-webkit-keyframes scaleBig{
+	0%{transform: scale(0);}
+/*	60%{transform: scale(1); }
+	80%{transform: scale(0.7);}*/
+	100%{transform: scale(1);}
+}
+
+@keyframes mask{
+	from{top: -100%;}
+	to{top: 0;}
+}
+
+@-webkit-keyframes mask{
+	from{top: -100%;}
+	to{top: 0;}
+}
+
+@keyframes cancleMask{
+	from{top: 0;}
+	to{top: -100%;}
+}
+
+@-webkit-keyframes cancleMask{
+	from{top: 0;}
+	to{top: -100%}
+}
+
+.arrow{
+	animation: arrowUpToDown 2.3s infinite;
+	-webkit-animation: arrowUpToDown 2.3s infinite;
+}
+
+/*.logo_1,.logo_2{
+	animation: fadeIn 0.5s both;
+}
+
+.logo_2{
+	animation-delay: 0.5s;
+}
+
+ul.timeLine li.item:nth-child(odd) ul.timeEvent{
+	animation: slideRightToLeft 0.6s both; 
+	animation-delay: 1s;
+}
+
+ul.timeLine li.item:nth-child(even) ul.timeEvent{
+	animation: slideLeftToRight 0.6s both; 
+	animation-delay: 1s;
+}*/
+
+/*#prize li{
+	animation: scaleBig 0.6s both;
+}*/
+
+/*#iPhone{
+	animation: slideLeftToRight 0.6s both; 
+}
+
+#iPhone_info{
+	animation: slideLeftToRight 0.6s both; 	
 }

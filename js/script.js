@@ -8,130 +8,91 @@ if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
         viewport.name = 'viewport';
         viewport.content = 'target-densitydpi=device-dpi, width=' + 750 + 'px, user-scalable=no';
         head.length > 0 && head[head.length - 1].appendChild(viewport);    
-   
 }
 
 
 
 $(function () {
-	$("#fullpage").fullpage({
+	$("#fullpage").fullpage({		
 		anchors: ['page1', 'page2', 'page3'],
 		afterLoad: function (anchorLink, index) {
-			// body...
-			fade('.logo_1', 0.8, 0, 'In');
-			fade('.logo_2', 0.8, 0.8, 'In');
+			myAnimate(".logo_1", {'opacity':'0'}, 'fadeIn 0.5s both', '0');
+			myAnimate(".logo_2", {'opacity':'0'}, 'fadeIn 0.5s both', '1s');
 			if(index == 1){
 				$(".timeEvent").each(function(index, element) {
-					slideIn(true, 334, -344, 0.8, index, element);
+					var d = $(element).data('delay');
+					
+					if(index & 1){
+						myAnimate(element, null, 'slideLeftToRight-1 0.6s both', d);
+					}else{
+						myAnimate(element, null, 'slideRightToLeft-1 0.6s both', d);
+					}
 				});
 			}else if(index ==2){
 				$("#prize li").each(function (index, element) {
-					$(element).css({
-						'transition': 'transform 0.6s',
-						'transition-delay': index*0.5 + 1.6 + 's',
-						'transform': 'scale(1)'
-					})
+					var d = $(element).data('delay');
+					myAnimate(element, null, 'scaleBig 0.6s both', d);
 				})
 			}else{
 				$(".iphone-info").each(function (index, element) {
-					slideIn(true, -334, 344, 0.8, index, element);
+					var d = $(this).data('delay');
+					if(index == 1){
+						myAnimate(element, null, 'slideRightToLeft-2 0.6s both', d);
+					}else{
+						myAnimate(element, null, 'slideLeftToRight-2 0.6s both', d);
+					}
 				});
-				$(".btnGroup").css({
-					'animation': 'slideUp 1s both',
-					'animation-delay': '3.2s'
-				})
+				myAnimate('.btnGroup', null, 'slideUp 0.6s both', '2.2s');
 			}
 		},
 		onLeave: function (index, nextIndex, direction) {
-			fade('.logo_1', 1, 0, 'In', true);
-			fade('.logo_2', 1, 0, 'In', true);
+			myAnimate(".logo_1", {'opacity':'0'}, '', 0);
+			myAnimate(".logo_2", {'opacity':'0'}, '', 0);
 			if(index == 1){
-				
 				$(".timeEvent").each(function(index, element) {
-					slideIn(false, -604, 364, 0, index, element);
+					if(index & 1){
+						myAnimate(element, {'left': '-610px'}, '', 0);
+					}else{
+						myAnimate(element, {'left': '344px'}, '', 0);
+					}
 				});
 			}else if(index ==2){
 				$("#prize li").each(function (index, element) {
-					$(element).css({
-						'transition': '',
-						'transition-delay': '',
-						'transform': 'scale(0)'
-					})
+					myAnimate(element, {'transform': 'scale(0)'}, '', 0);
 				})
 			}else{
 				$(".iphone-info").each(function (index, element) {
-					slideIn(false, 334, -344, 0, index, element);
+					if(index == 1){
+						myAnimate(element, {'left':'350px'}, '', 0);
+					}else{
+						myAnimate(element, {'left':'-280px'}, '', 0);
+					}
 				});
-				$(".btnGroup").css({
-					'animation': '',
-					'animation-delay': ''
-				})
+				myAnimate('.btnGroup', null, '', 0);
 			}
 		}
-
 	});
 	$("#share").click(function(event) {
-		$(".mask").css({
-			'top': '0',
-			'transition': 'top 0.8s'
-		})
+		myAnimate('.mask', {'z-index': '1'}, 'mask 0.5s both', 0);
 	});
 	$(".mask").click(function(event) {
-		$(".mask").css({
-			'top': '-100%',
-			'transition': 'top 0.8s'
-		})
+		myAnimate('.mask', {'z-index': '-1'}, 'cancelMask 0.8s both', 0);
 	});
 })
 
+/*
+	@param element :加载动画的元素
+	@param init : 在动画加载之前需要设置好的状态
+	@param animation: 动画的css语句
+	@param delay: animation-delay的值
+ */
 
-function slideIn(isLoad, L_disdance, R_distance, time, index, element) {
-	if(isLoad){
-		if(index & 1){								
-			$(element).css({
-				'transition': 'transform ' + time + 's',
-				'transition-delay': index*0.8 + 1.6 + 's',
-				'transform': 'translate(' + L_disdance + 'px)'
-			})
-		}else{
-			$(element).css({
-				'transition': 'transform '+ time +'s',
-				'transition-delay': index*0.8 + 1.6 + 's',
-				'transform': 'translate(' + R_distance + 'px)'
-			})
-		}
-	}else{
-		if(index & 1){								
-			$(element).css({
-				'left': '' + L_disdance + 'px',
-				'transition': '',
-				'transition-delay': '',
-				'transform': ''
-			})
-		}else{
-			$(element).css({
-				'left': '' + R_distance + 'px',
-				'transition': '',
-				'transition-delay': '',
-				'transform': ''
-			})
-		}
-	}
+function myAnimate(element, init, animation, delay ) {
+	$(element).css($.extend({
+			'animation': '' + animation,
+			'-webkit-animation': '' + animation,
+			'animation-delay': ''+ delay	
+		}, init)
+	)
 }
 
-
-
-function fade(selector, time, delay, method, clear) {
-	if(!clear){
-		$(selector).css({
-			'animation': 'fade' + method + ' ' + time + 's both',
-			'animation-delay':  + delay + 's'
-		})
-	}else{
-		$(selector).css({
-			'opacity': '0',
-			'animation': '',
-			'animation-delay': ''
-		})
-	}
-}
