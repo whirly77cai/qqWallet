@@ -8,7 +8,7 @@
                         }else if(index == 2){
                             $("#prize li").each(function (index, element) {
                                 var d = $(element).data('delay');
-                                myAnimate(element, null, 'scaleBig 0.6s both', d)
+                                myAnimate(element, null, 'scaleBig 0.8s both', d)
                             })    
                         }
                         
